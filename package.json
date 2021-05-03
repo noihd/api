@@ -1,0 +1,200 @@
+{
+  "name": "police-data-portal-api",
+  "version": "1.0.0",
+  "description": "Police Data Portal API",
+  "author": "Police Data Portal",
+  "license": "MIT",
+  "private": false,
+  "main": "index.js",
+  "engines": {
+    "node": ">= 12.12.0",
+    "npm": ">= 6.13.4"
+  },
+  "contributors": [
+    {
+      "name": "Peter Schmalfeldt",
+      "email": "me@peterschmalfeldt.com",
+      "url": "https://peterschmalfeldt.com"
+    }
+  ],
+  "scripts": {
+    "start": "./scripts/api.sh start",
+    "start:debug": "./scripts/api.sh start debug",
+    "stop": "./scripts/api.sh stop",
+    "cleanup": "find ~/.forever/ -name '*.log' -delete && find ./ -name '*.log' -delete && rm -fr cleanup && npm run docs:clean && rm -r ./.cache/*.cache",
+    "docs": "jsdoc -c ./doc-conf.json -r ./app -R ./apiary.apib -d ./app/static/docs -t ./node_modules/ink-docstrap/template",
+    "docs:clean": "rm -r ./app/static/docs || true",
+    "test": "API_NODE_ENV=test mocha ./test/**/*_test.js --recursive --exit --require esm ./test/bootstrap.js",
+    "test:single": "API_NODE_ENV=test mocha ./test/**/*_test.js --recursive --exit --require esm ./test/bootstrap.js --grep $2",
+    "lint": "eslint --ext .js -f ./node_modules/eslint-friendly-formatter app test && echo '\n【ツ】CODE FORMATTING PERFECTION !!!\n'",
+    "coverage": "API_NODE_ENV=test nyc npm run test",
+    "check-coverage": "nyc check-coverage --statement 80 --branch 80 --function 80 --line 80",
+    "migrate": "sequelize db:migrate --debug",
+    "migrate:create": "sequelize migration:create --debug",
+    "migrate:rollback": "sequelize db:migrate:undo --debug",
+    "seed": "sequelize db:seed:all --debug",
+    "seed:create": "sequelize seed:create --debug",
+    "seed:rollback": "sequelize db:seed:undo --debug",
+    "elasticsearch:create": "cd ./app && node ./elasticsearch/create && cd ../",
+    "elasticsearch:update": "cd ./app && node ./elasticsearch/update && cd ../",
+    "elasticsearch:delete": "cd ./app && node ./elasticsearch/delete && cd ../",
+    "help": "node node_modules/npm-scripts-help"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FatalEncounters/api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FatalEncounters/api/issues"
+  },
+  "homepage": "https://github.com/FatalEncounters/api#readme",
+  "dependencies": {
+    "@bugsnag/js": "^7.9.2",
+    "@bugsnag/plugin-express": "^7.9.2",
+    "@mailchimp/mailchimp_transactional": "^1.0.25",
+    "async": "^3.2.0",
+    "babel-core": "^6.26.3",
+    "bcrypt": "^5.0.1",
+    "bluebird": "^3.7.2",
+    "class-extend": "^0.1.2",
+    "colors": "^1.4.0",
+    "convict": "^6.0.1",
+    "cors": "^2.8.5",
+    "debug": "^4.3.1",
+    "del": "^6.0.0",
+    "dotenv": "^8.2.0",
+    "elasticsearch": "^16.7.2",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "express-rate-limit": "git://github.com/manifestinteractive/express-rate-limit.git#d615bcf3cb50cb67e6a6c05d220d7b86d7f82255",
+    "express-session": "^1.17.1",
+    "flat-cache": "^3.0.4",
+    "follow-redirects": "^1.14.0",
+    "hashids": "^2.2.8",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "mysql2": "^2.2.5",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5",
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0",
+    "sequelize-slugify": "^1.5.0",
+    "uuid": "^8.3.2",
+    "validate.js": "^0.13.1",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.3.4",
+    "chai-passport-strategy": "^1.0.1",
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-html": "^6.1.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "esm": "^3.2.25",
+    "ink-docstrap": "^1.3.2",
+    "jsdoc": "^3.6.6",
+    "mocha": "^8.3.2",
+    "mock-req": "^0.2.0",
+    "mock-res": "^0.5.0",
+    "nodemon": "^2.0.7",
+    "npm-scripts-help": "^0.8.0",
+    "nyc": "^15.1.0",
+    "pre-commit": "^1.2.2",
+    "rewire": "^5.0.0",
+    "sinon": "^10.0.0"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "report-dir": "coverage",
+    "reporter": "html",
+    "include": [
+      "app/**/*.js"
+    ],
+    "exclude": [
+      "app/static/**/*.js",
+      "**/*.spec.js"
+    ],
+    "branches": 50,
+    "lines": 50,
+    "functions": 50,
+    "statements": 50
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "scriptshelp": {
+    "help-message": "API NPM Commands:",
+    "help": {
+      "Description": "Generates List of NPM Scripts you can run"
+    },
+    "start": {
+      "Description": "Runs API using `forever` service after running `npm run cleanup`"
+    },
+    "start:debug": {
+      "Description": "Starts the API in Debug Mode so you can see Console statements in terminal"
+    },
+    "stop": {
+      "Description": "Stop API when run from `npm start` using `forever`"
+    },
+    "cleanup": {
+      "Description": "Remove files & folders generated by API that are not apart of the code base"
+    },
+    "docs": {
+      "Description": "Generate JSDoc Documentation"
+    },
+    "docs:clean": {
+      "Description": "Remove the JSDoc Documentation Folder in `./static/docs/`"
+    },
+    "test": {
+      "Description": "Runs complete test suite of Linting, Unit Tests & Code Coverage Reports"
+    },
+    "lint": {
+      "Description": "Tests Javascript Code against Linting Rules"
+    },
+    "coverage": {
+      "Description": "Generate Code Coverage Reports and Run Unit Tests"
+    },
+    "check-coverage": {
+      "Description": "Check Coverage Reports against Minimum Requirements"
+    },
+    "migrate": {
+      "Description": "Migrate to Latest Database Schema"
+    },
+    "migrate:create": {
+      "Description": "Create new Migration Template file in `./app/seeders` folder"
+    },
+    "migrate:rollback": {
+      "Description": "Roll Back Migration Changes"
+    },
+    "seed": {
+      "Description": "Run Seeders in `./app/seeders` folder"
+    },
+    "seed:create": {
+      "Description": "Create new Seeder Template file in `./app/seeders` folder"
+    },
+    "seed:rollback": {
+      "Description": "Undo Seeders"
+    },
+    "elasticsearch:create": {
+      "Description": "Create Elasticsearch Indexes"
+    },
+    "elasticsearch:update": {
+      "Description": "Update Elasticsearch Indexes"
+    },
+    "elasticsearch:delete": {
+      "Description": "Delete Elasticsearch Indexes"
+    },
+    "prepublish": {
+      "Description": "Runs any commands necessary before publishing API"
+    }
+  }
+}

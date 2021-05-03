@@ -1,0 +1,15 @@
+!.gitignore
+!.cache
+.DS_Store
+Thumbs.db
+.idea
+.env
+.well-known
+*.log
+app/static/docs
+coverage
+node_modules
+.nyc_output
+.vscode
+*.code-workspace
+preview.html
