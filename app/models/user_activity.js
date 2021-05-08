@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER(10).UNSIGNED
     },
     type: {
-      type: DataTypes.ENUM(
+      type: DataTypes.ENUM,
+      values: [
         'changed_email',
         'changed_password',
         'changed_username',
@@ -39,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         'reset_password',
         'upgraded_account',
         'user_followed'
-      ),
+      ],
       allowNull: false,
       defaultValue: 'login'
     }

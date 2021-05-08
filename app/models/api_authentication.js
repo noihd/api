@@ -64,7 +64,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     app_type: {
-      type: DataTypes.ENUM('web_app', 'mobile_app', 'os_app', 'tv_app', 'custom_app', 'developer'),
+      type: DataTypes.ENUM,
+      values: [
+        'custom_app',
+        'developer',
+        'mobile_app',
+        'os_app',
+        'tv_app',
+        'web_app'
+      ],
       allowNull: false,
       defaultValue: 'developer'
     },
@@ -80,7 +88,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 2500
     },
     status: {
-      type: DataTypes.ENUM('pending_approval', 'approved', 'rejected', 'developer_terminated', 'deleted'),
+      type: DataTypes.ENUM,
+      values: [
+        'approved',
+        'deleted',
+        'developer_terminated',
+        'pending_approval',
+        'rejected'
+      ],
       allowNull: false,
       defaultValue: 'pending_approval'
     },

@@ -51,6 +51,6 @@ You can connect to your ySql docker instance using the following config options:
 ```
 HOST: 127.0.0.1
 PORT: 8083
-USER: docker_api
-PASS: d0cK3r^4p1
+USER: docker_pdp_api
+PASS: d0cK3r*pdp^4p1
 ```

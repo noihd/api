@@ -6,7 +6,6 @@
 
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
-const request = require('request')
 
 const config = require('../../../config')
 const models = require('../../../models')
@@ -116,71 +115,31 @@ module.exports = {
   },
 
   /**
-   * Make Remote HTTP call to {@link http://ipinfodb.com/ip_location_api.php} API to convert IP Address to Geoocation
-   * @param {string} ip - IP Address
-   * @param {callback} callback - Requested Callback Handler
-   */
-  getGeoLocation (ip, callback) {
-    const params = {
-      key: config.get('ipinfodb.key'),
-      ip: ip,
-      format: 'json'
-    }
-
-    request.get({
-      url: 'https://api.ipinfodb.com/v3/ip-city/',
-      qs: params
-    }, (error, response, geolocation) => {
-      if (error) {
-        return callback(new Error(error))
-      }
-
-      if (geolocation && typeof geolocation === 'string') {
-        callback(JSON.parse(geolocation))
-      } else {
-        const defaultResponse = {
-          statusCode: 'OK',
-          statusMessage: '',
-          ipAddress: ip,
-          countryCode: null,
-          countryName: null,
-          regionName: null,
-          cityName: null,
-          zipCode: null,
-          latitude: null,
-          longitude: null,
-          timeZone: null
-        }
-
-        callback(defaultResponse)
-      }
-    })
-  },
-
-  /**
    * Track User Login
    * @param {object} user - User Object
    * @param {object} request - Node HTTP Request
    */
   trackLogin (user, request) {
-    const ipAddress = request.headers['x-forwarded-for']
-    const userAgent = request.headers['user-agent']
+    // TODO Switch this out to use Domain: GeolocationDomain.getIpAddress(ipAddress, 'cities')
 
-    this.getGeoLocation(ipAddress, (geolocation) => {
-      if (geolocation) {
-        models.user_login.create({
-          user_id: user.get('id'),
-          user_agent: userAgent,
-          ip_address: geolocation.ipAddress,
-          country: geolocation.countryCode,
-          city: geolocation.cityName,
-          state: geolocation.regionName,
-          postal_code: geolocation.zipCode,
-          latitude: geolocation.latitude,
-          longitude: geolocation.longitude
-        })
-      }
-    })
+    // const ipAddress = request.headers['x-forwarded-for']
+    // const userAgent = request.headers['user-agent']
+
+    // this.getGeoLocation(ipAddress, (geolocation) => {
+    //   if (geolocation) {
+    //     models.user_login.create({
+    //       user_id: user.get('id'),
+    //       user_agent: userAgent,
+    //       ip_address: geolocation.ipAddress,
+    //       country: geolocation.countryCode,
+    //       city: geolocation.cityName,
+    //       state: geolocation.regionName,
+    //       postal_code: geolocation.zipCode,
+    //       latitude: geolocation.latitude,
+    //       longitude: geolocation.longitude
+    //     })
+    //   }
+    // })
   },
 
   /**

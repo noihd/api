@@ -26,8 +26,5 @@
     "host": "http://localhost:9200",
     "indexName": "api-test",
     "log": null
-  },
-  "mandrill": {
-    "key": "FAKE_KEY"
   }
 }

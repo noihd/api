@@ -43,11 +43,7 @@ export API_ELASTIC_SEARCH='http://localhost:9200';
 export API_HASH_ID_ALPHABET='BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz';
 export API_HASH_ID_LENGTH=6;
 export API_HASH_ID_SECRET='CHANGE_ME';
-export API_INVITE_CAP=15;
-export API_INVITE_ONLY=true;
-export API_MANDRILL_API_KEY='CHANGE_ME';
 export API_NODE_ENV='local';
-export API_OPENSTATES_API_KEY='CHANGE_ME';
 export API_PORT=5000;
 export API_SESSION_KEY='CHANGE_ME';
 ```

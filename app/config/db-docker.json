@@ -1,7 +1,7 @@
 {
-  "username": "docker_api",
-  "password": "d0cK3r^4p1",
-  "database": "docker_api",
+  "username": "docker_pdp_api",
+  "password": "d0cK3r*pdp^4p1",
+  "database": "docker_pdp_api",
   "host": "database",
   "dialect": "mysql",
   "seederStorage": "sequelize"

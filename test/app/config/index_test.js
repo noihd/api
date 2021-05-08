@@ -35,7 +35,6 @@ describe('Config', () => {
       assert.isDefined(config.get('elasticsearch.apiVersion'))
       assert.isDefined(config.get('elasticsearch.requestTimeout'))
       assert.isDefined(config.get('elasticsearch.log'))
-      assert.isDefined(config.get('mandrill.key'))
     })
   })
 })

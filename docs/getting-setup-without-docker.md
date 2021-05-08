@@ -11,7 +11,6 @@ Requirements
 * [NodeJS 12.x](https://nodejs.org/en/)
 * [MySQL](http://www.mysql.com/)
 * [Elasticsearch 7.5.x](https://www.elastic.co/)
-* [Bcrypt](http://bcrypt.sourceforge.net/)
 
 
 Installing Requirements
@@ -24,7 +23,7 @@ It's recommended that you install and use [Homebrew](http://brew.sh/) for the sy
 ```bash
 brew tap elastic/tap
 brew tap homebrew/services
-brew install node mysql bcrypt elastic/tap/elasticsearch-full
+brew install node mysql elastic/tap/elasticsearch-full
 ```
 
 #### Linux
@@ -69,9 +68,6 @@ For example, if you are setting up a `local` environment, you would need to crea
       "username": "root",
       "password": ""
     }
-  },
-  "mandrill": {
-    "key": "CHANGE_ME"
   },
   "elasticsearch": {
     "log": "error"

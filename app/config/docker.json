@@ -1,26 +1,20 @@
 {
   "debug": true,
   "env": "local",
-  "secret": "F8E1577B-DDAF-8234-4DD5-9301E7223582",
-  "sessionKey": "F41CF60C-9A23-55C4-DDE3-7642B13B6276",
-  "debugKey": "BD52B1DC-C396-A714-B5B4-21AE9B6A0971",
+  "secret": "CCCD4FF0-B7F0-AD64-E92D-45C8E1AC135A",
+  "sessionKey": "583D5B98-DB93-5C84-7D37-07C5B8027E54",
+  "debugKey": "133F39C7-3313-1D04-D5B0-24AAF62253E1",
   "bugsnag": "",
   "hashID": {
-    "secret": "4B1AB909-EA83-4E34-3D43-280273497137"
+    "secret": "8B2BD489-9793-A074-1DE5-F5F4773B065D"
   },
   "database": {
     "api": {
       "host": "database",
-      "database": "docker_api",
-      "username": "docker_api",
-      "password": "d0cK3r^4p1"
+      "database": "docker_pdp_api",
+      "username": "docker_pdp_api",
+      "password": "d0cK3r*pdp^4p1"
     }
-  },
-  "mandrill": {
-    "key": "CHANGE_ME"
-  },
-  "ipinfodb": {
-    "key": "CHANGE_ME"
   },
   "elasticsearch": {
     "log": "error",

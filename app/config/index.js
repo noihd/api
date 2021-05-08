@@ -10,38 +10,6 @@ const path = require('path')
 /**
  * Default API Configuration
  * @type {object}
- * @property {object} devFlags - Developer Flags
- * @property {boolean} devFlags.enableBugTracking=false - Enable Bugsnag
- * @property {boolean} devFlags.enableGoogleAnalytics=false - Enable Google Analytics
- * @property {boolean} debug=false - Whether debugging is on or off
- * @property {string} debugKey - Allow for apiDevKey param in API to check API results without token
- * @property {enum} env=local - The current application environment ['local', 'mobile', 'staging', 'production' ]
- * @property {number} port=5000 - The port to bind to
- * @property {string} version=v1 - API Version Number ( in URL )
- * @property {string} sessionKey - Express Session Key
- * @property {boolean} inviteOnly=false - Whether Invite Only System should be Active
- * @property {number} inviteCap=15 - Invitation Cap Per User
- * @property {string} bugsnag - Bugsnag API Key
- * @property {string} analytics - Google Analytics API Key
- * @property {object} hashID - Settings for Hash ID
- * @property {string} hashID.secret - Hash ID Encryption Key
- * @property {number} hashID.length=6 - Hash ID String Length
- * @property {string} hashID.alphabet=BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz - Hash ID Alphabet to use if creating Hashes ( remove vowels to prevent accidental words )
- * @property {object} database - Main Database Config Object
- * @property {object} database.api - Database Settings for API
- * @property {string} database.api.host=localhost - API MySQL Host
- * @property {string} database.api.database=api_database - API MySQL Database
- * @property {string} database.api.username=root - API MySQL Username
- * @property {string} database.api.password - API MySQL Password
- * @property {string} secret - App Secret Key
- * @property {object} router - Router Settings
- * @property {boolean} router.caseSensitive=true - Whether routes are case-sensitive
- * @property {boolean} router.mergeParams=true - Whether child routes should merge with parent route params
- * @property {object} elasticsearch - Elasticsearch Settings
- * @property {string} elasticsearch.host - The Elasticsearch host/connection string/URL
- * @property {string} elasticsearch.indexName - The name of the API Elasticsearch index
- * @property {object} mandrill - Mandrill Settings
- * @property {string} mandrill.key - API Key for Mandrill, which is used for sending email. Can be retrieved/changed at: {@link https://mandrillapp.com/settings/}
  */
 const config = convict({
   devFlags: {
@@ -67,7 +35,7 @@ const config = convict({
   debugKey: {
     doc: 'Allow for apiDevKey param in API to check API results without token',
     format: String,
-    default: '97C83185-3909-BDD4-F9F0-E39C81B92F30',
+    default: 'B15C1B3E-7EC2-8D84-013A-DF332E7D0C65',
     env: 'API_DEBUG_KEY'
   },
   env: {
@@ -91,20 +59,8 @@ const config = convict({
   sessionKey: {
     doc: 'Express Session Key',
     format: String,
-    default: '4D393E9A-5A83-37B4-6929-53C5231AA813',
+    default: 'CDA81F62-D687-FD94-E553-4993C3060A16',
     env: 'API_SESSION_KEY'
-  },
-  inviteOnly: {
-    doc: 'Whether Invite Only System should be Active',
-    format: Boolean,
-    default: false,
-    env: 'API_INVITE_ONLY'
-  },
-  inviteCap: {
-    doc: 'Invitation Cap Per User',
-    format: Number,
-    default: 15,
-    env: 'API_INVITE_CAP'
   },
   bugsnag: {
     doc: 'Bugsnag API Key',
@@ -122,7 +78,7 @@ const config = convict({
     secret: {
       doc: 'Hash ID Encryption Key',
       format: String,
-      default: '02BFD94E-BA1D-F7A4-CDB7-32BA1E9A6C3D',
+      default: '8510F72D-BF84-1824-95B9-81D493F54A31',
       env: 'API_HASH_ID_SECRET'
     },
     length: {
@@ -175,7 +131,7 @@ const config = convict({
   secret: {
     doc: 'App secret key',
     format: String,
-    default: 'CB3F63A5-3C80-7444-DD2D-E9D31DB869CF',
+    default: '02FD45D0-64FC-85A4-B90A-01931503098F',
     env: 'API_APP_SECRET'
   },
   router: {
@@ -216,22 +172,6 @@ const config = convict({
       doc: 'Elasticsearch API Logging. See: https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/logging.html',
       format: '*',
       default: 'error'
-    }
-  },
-  mandrill: {
-    key: {
-      doc: 'API Key for Mandrill, which is used for sending email. Can be retrieved/changed at: https://mandrillapp.com/settings/',
-      format: String,
-      env: 'API_MANDRILL_API_KEY',
-      default: 'CHANGE_ME'
-    }
-  },
-  ipinfodb: {
-    key: {
-      doc: 'API Key for IP Info DB',
-      format: String,
-      env: 'API_IPINFO_API_KEY',
-      default: 'CHANGE_ME'
     }
   }
 })

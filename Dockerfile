@@ -45,6 +45,15 @@ COPY .nvmrc ./
 COPY app ./app
 COPY scripts ./scripts
 
+# Download Required Libraries
+RUN rm -f ./app/flat-db/cities.mmdb
+RUN curl -o ./app/flat-db/cities.mmdb.gz https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=OnetpenM09tdqAhJ&suffix=tar.gz
+RUN gunzip ./app/flat-db/cities.mmdb.gz
+
+RUN rm -f ./app/flat-db/countries.mmdb
+RUN curl -o ./app/flat-db/countries.mmdb.gz https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=OnetpenM09tdqAhJ&suffix=tar.gz
+RUN gunzip ./app/flat-db/countries.mmdb.gz
+
 RUN chmod 755 ./scripts/docker-compose/*.sh
 RUN chown -R developer:developer /home/developer/api
 
