@@ -108,36 +108,36 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'api_authentication',
       timestamps: true,
       indexes: [{
-          fields: ['api_key'],
-          unique: true
-        },
-        {
-          fields: ['allow_api_get']
-        },
-        {
-          fields: ['allow_api_post']
-        },
-        {
-          fields: ['allow_api_put']
-        },
-        {
-          fields: ['allow_api_delete']
-        },
-        {
-          fields: ['allow_content_management']
-        },
-        {
-          fields: ['allow_user_registration']
-        },
-        {
-          fields: ['status']
-        },
-        {
-          fields: ['app_type']
-        },
-        {
-          fields: ['user_id']
-        }
+        fields: ['api_key'],
+        unique: true
+      },
+      {
+        fields: ['allow_api_get']
+      },
+      {
+        fields: ['allow_api_post']
+      },
+      {
+        fields: ['allow_api_put']
+      },
+      {
+        fields: ['allow_api_delete']
+      },
+      {
+        fields: ['allow_content_management']
+      },
+      {
+        fields: ['allow_user_registration']
+      },
+      {
+        fields: ['status']
+      },
+      {
+        fields: ['app_type']
+      },
+      {
+        fields: ['user_id']
+      }
       ]
     })
 

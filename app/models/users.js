@@ -119,31 +119,31 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'users',
       timestamps: true,
       indexes: [{
-          fields: ['username'],
-          unique: true
-        },
-        {
-          fields: ['email'],
-          unique: true
-        },
-        {
-          fields: ['new_email'],
-          unique: true
-        },
-        {
-          fields: ['new_password_key'],
-          unique: true
-        },
-        {
-          fields: ['new_email_key'],
-          unique: true
-        },
-        {
-          fields: ['activated']
-        },
-        {
-          fields: ['banned']
-        }
+        fields: ['username'],
+        unique: true
+      },
+      {
+        fields: ['email'],
+        unique: true
+      },
+      {
+        fields: ['new_email'],
+        unique: true
+      },
+      {
+        fields: ['new_password_key'],
+        unique: true
+      },
+      {
+        fields: ['new_email_key'],
+        unique: true
+      },
+      {
+        fields: ['activated']
+      },
+      {
+        fields: ['banned']
+      }
       ]
     })
 
@@ -152,7 +152,7 @@ module.exports = (sequelize, DataTypes) => {
    * @memberof module:models/api/users
    * @returns {object}
    */
-  User.prototype.publicJSON = function() {
+  User.prototype.publicJSON = function () {
     const exclude = [
       'new_email',
       'new_email_key',
@@ -178,7 +178,7 @@ module.exports = (sequelize, DataTypes) => {
    * @memberof module:models/api/users
    * @returns {boolean}
    */
-  User.prototype.isActive = function() {
+  User.prototype.isActive = function () {
     return this.get('banned') === false && this.get('activated') === true
   }
 
@@ -187,7 +187,7 @@ module.exports = (sequelize, DataTypes) => {
    * @memberof module:models/api/users
    * @returns {string}
    */
-  User.prototype.fullName = function() {
+  User.prototype.fullName = function () {
     if (this.get('first_name') && this.get('last_name')) {
       return this.get('first_name') + ' ' + this.get('last_name')
     }
