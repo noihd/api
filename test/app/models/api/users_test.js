@@ -31,14 +31,14 @@ describe('Models Users', () => {
   }
 
   it('should be defined', (done) => {
-    assert.isDefined(models.users)
+    assert.isDefined(models.Users)
     done()
   })
 
   it('publicJSON should be defined', (done) => {
     restore()
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
 
     assert.isDefined(user.publicJSON)
     assert.isFunction(user.publicJSON)
@@ -48,7 +48,7 @@ describe('Models Users', () => {
   it('isActive should be defined', (done) => {
     restore()
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
 
     assert.isDefined(user.isActive)
     assert.isFunction(user.isActive)
@@ -58,7 +58,7 @@ describe('Models Users', () => {
   it('isActive should work for valid user', (done) => {
     restore()
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
     const isActive = user.isActive()
 
     assert.isDefined(isActive)
@@ -72,7 +72,7 @@ describe('Models Users', () => {
     fakeUser.activated = true
     fakeUser.banned = true
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
     const isActive = user.isActive()
 
     assert.isDefined(isActive)
@@ -85,7 +85,7 @@ describe('Models Users', () => {
     fakeUser.activated = false
     fakeUser.banned = false
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
     const isActive = user.isActive()
 
     assert.isDefined(isActive)
@@ -96,7 +96,7 @@ describe('Models Users', () => {
   it('fullName should be defined', (done) => {
     restore()
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
 
     assert.isDefined(user.fullName)
     assert.isFunction(user.fullName)
@@ -106,7 +106,7 @@ describe('Models Users', () => {
   it('fullName should work', (done) => {
     restore()
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
     const fullName = user.fullName()
 
     assert.isDefined(fullName)
@@ -120,7 +120,7 @@ describe('Models Users', () => {
     fakeUser.first_name = null
     fakeUser.last_name = null
 
-    const user = models.users.build(fakeUser)
+    const user = models.Users.build(fakeUser)
     const fullName = user.fullName()
 
     assert.isDefined(fullName)

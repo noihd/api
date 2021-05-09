@@ -83,7 +83,7 @@ describe('Domain Settings', () => {
 
   describe('updateUserProfile', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
     })
 
     it('should update profile', (done) => {
@@ -159,7 +159,7 @@ describe('Domain Settings', () => {
 
   describe('updateSocialLinks', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
     })
 
     it('should update social links', (done) => {

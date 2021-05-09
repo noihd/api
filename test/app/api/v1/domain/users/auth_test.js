@@ -14,7 +14,7 @@ describe('User Auth Tests', () => {
   describe('createUserToken', () => {
     it('should return a valid JWT web token containing the passed in users id', () => {
       const id = 456
-      const user = models.users.build({
+      const user = models.Users.build({
         id: id
       })
 

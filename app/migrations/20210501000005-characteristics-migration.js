@@ -4,9 +4,9 @@ const models = require('../models')
 
 module.exports = {
   up: (queryInterface) => {
-    return queryInterface.createTable(models.user_login.tableName, models.user_login.rawAttributes).then(() => {
-      for (let i = 0; i < models.user_login.options.indexes.length; i++) {
-        queryInterface.addIndex(models.user_login.tableName, models.user_login.options.indexes[i]).catch(err => {
+    return queryInterface.createTable(models.Characteristics.tableName, models.Characteristics.rawAttributes).then(() => {
+      for (let i = 0; i < models.Characteristics.options.indexes.length; i++) {
+        queryInterface.addIndex(models.Characteristics.tableName, models.Characteristics.options.indexes[i]).catch(err => {
           if (typeof err.message !== 'undefined' && err.message.indexOf('Deadlock') === -1) {
             console.log(`× INDEX ERROR: ${err.message}`)
           }
@@ -19,6 +19,6 @@ module.exports = {
     })
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable(models.user_login.tableName)
+    return queryInterface.dropTable(models.Characteristics.tableName)
   }
 }

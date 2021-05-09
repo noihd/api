@@ -18,131 +18,141 @@ const hashID = new Hashids(
 )
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('users', {
-    id: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    activated: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    },
-    username: {
-      type: DataTypes.STRING(30),
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.STRING(100),
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING(100),
-      allowNull: false
-    },
-    first_name: {
-      type: DataTypes.STRING(50)
-    },
-    last_name: {
-      type: DataTypes.STRING(50)
-    },
-    company_name: {
-      type: DataTypes.STRING(100)
-    },
-    profile_name: {
-      type: DataTypes.STRING(100)
-    },
-    profile_photo: {
-      type: DataTypes.STRING(255)
-    },
-    location: {
-      type: DataTypes.STRING(50)
-    },
-    profile_link_website: {
-      type: DataTypes.STRING(100)
-    },
-    profile_link_twitter: {
-      type: DataTypes.STRING(100)
-    },
-    profile_link_1: {
-      type: DataTypes.STRING(100)
-    },
-    profile_link_2: {
-      type: DataTypes.STRING(100)
-    },
-    profile_link_3: {
-      type: DataTypes.STRING(100)
-    },
-    bio: {
-      type: DataTypes.STRING(255)
-    },
-    banned: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    },
-    banned_reason: {
-      type: DataTypes.STRING
-    },
-    new_password: {
-      type: DataTypes.STRING(100)
-    },
-    new_password_key: {
-      type: DataTypes.STRING(25)
-    },
-    new_password_requested: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    },
-    new_email: {
-      type: DataTypes.STRING(100)
-    },
-    new_email_key: {
-      type: DataTypes.STRING(25)
-    },
-    new_email_requested: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }
-  }, {
-    indexes: [
-      {
-        fields: ['username'],
-        unique: true
+  const User = sequelize.define(
+    'Users', {
+      id: {
+        type: DataTypes.INTEGER(15).UNSIGNED,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
       },
-      {
-        fields: ['email'],
-        unique: true
+      activated: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
-      {
-        fields: ['new_email'],
-        unique: true
+      username: {
+        type: DataTypes.STRING(30),
+        allowNull: false
       },
-      {
-        fields: ['new_password_key'],
-        unique: true
+      password: {
+        type: DataTypes.STRING(100),
+        allowNull: false
       },
-      {
-        fields: ['new_email_key'],
-        unique: true
+      email: {
+        type: DataTypes.STRING(100),
+        allowNull: false
       },
-      {
-        fields: ['activated']
+      first_name: {
+        type: DataTypes.STRING(50)
       },
-      {
-        fields: ['banned']
+      last_name: {
+        type: DataTypes.STRING(50)
+      },
+      company_name: {
+        type: DataTypes.STRING(100)
+      },
+      profile_name: {
+        type: DataTypes.STRING(100)
+      },
+      profile_photo: {
+        type: DataTypes.STRING(255)
+      },
+      location: {
+        type: DataTypes.STRING(50)
+      },
+      profile_link_website: {
+        type: DataTypes.STRING(100)
+      },
+      profile_link_twitter: {
+        type: DataTypes.STRING(100)
+      },
+      profile_link_1: {
+        type: DataTypes.STRING(100)
+      },
+      profile_link_2: {
+        type: DataTypes.STRING(100)
+      },
+      profile_link_3: {
+        type: DataTypes.STRING(100)
+      },
+      bio: {
+        type: DataTypes.STRING(255)
+      },
+      banned: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      banned_reason: {
+        type: DataTypes.STRING
+      },
+      new_password: {
+        type: DataTypes.STRING(100)
+      },
+      new_password_key: {
+        type: DataTypes.STRING(25)
+      },
+      new_password_requested: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      },
+      new_email: {
+        type: DataTypes.STRING(100)
+      },
+      new_email_key: {
+        type: DataTypes.STRING(25)
+      },
+      new_email_requested: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
       }
-    ]
-  })
+    }, {
+      charset: 'utf8mb4',
+      collate: 'utf8_unicode_ci',
+      comment: 'API Admin Users',
+      engine: 'InnoDB',
+      freezeTableName: true,
+      paranoid: true,
+      plural: 'users',
+      singular: 'user',
+      tableName: 'users',
+      timestamps: true,
+      indexes: [{
+          fields: ['username'],
+          unique: true
+        },
+        {
+          fields: ['email'],
+          unique: true
+        },
+        {
+          fields: ['new_email'],
+          unique: true
+        },
+        {
+          fields: ['new_password_key'],
+          unique: true
+        },
+        {
+          fields: ['new_email_key'],
+          unique: true
+        },
+        {
+          fields: ['activated']
+        },
+        {
+          fields: ['banned']
+        }
+      ]
+    })
 
   /**
    * Filter User to remove Private Info for Public Consumption
    * @memberof module:models/api/users
    * @returns {object}
    */
-  User.prototype.publicJSON = function () {
+  User.prototype.publicJSON = function() {
     const exclude = [
       'new_email',
       'new_email_key',
@@ -168,7 +178,7 @@ module.exports = (sequelize, DataTypes) => {
    * @memberof module:models/api/users
    * @returns {boolean}
    */
-  User.prototype.isActive = function () {
+  User.prototype.isActive = function() {
     return this.get('banned') === false && this.get('activated') === true
   }
 
@@ -177,7 +187,7 @@ module.exports = (sequelize, DataTypes) => {
    * @memberof module:models/api/users
    * @returns {string}
    */
-  User.prototype.fullName = function () {
+  User.prototype.fullName = function() {
     if (this.get('first_name') && this.get('last_name')) {
       return this.get('first_name') + ' ' + this.get('last_name')
     }

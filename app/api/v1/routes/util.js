@@ -5,10 +5,6 @@
  */
 
 const _ = require('lodash')
-const jwt = require('jsonwebtoken')
-
-const config = require('../../../config')
-const models = require('../../../models')
 
 /* istanbul ignore next */
 module.exports = {
@@ -112,102 +108,5 @@ module.exports = {
     }
 
     return response
-  },
-
-  /**
-   * Track User Login
-   * @param {object} user - User Object
-   * @param {object} request - Node HTTP Request
-   */
-  trackLogin (user, request) {
-    // TODO Switch this out to use Domain: GeolocationDomain.getIpAddress(ipAddress, 'cities')
-
-    // const ipAddress = request.headers['x-forwarded-for']
-    // const userAgent = request.headers['user-agent']
-
-    // this.getGeoLocation(ipAddress, (geolocation) => {
-    //   if (geolocation) {
-    //     models.user_login.create({
-    //       user_id: user.get('id'),
-    //       user_agent: userAgent,
-    //       ip_address: geolocation.ipAddress,
-    //       country: geolocation.countryCode,
-    //       city: geolocation.cityName,
-    //       state: geolocation.regionName,
-    //       postal_code: geolocation.zipCode,
-    //       latitude: geolocation.latitude,
-    //       longitude: geolocation.longitude
-    //     })
-    //   }
-    // })
-  },
-
-  /**
-   * Track User Activity
-   * @param {number} user_id - Logged In User ID
-   * @param {string} type - Type of User Activity
-   * @param {object} data - Data to Track
-   * @param {callback} callback - Requested Callback Handler
-   * @returns {*}
-   */
-  trackActivity (userId, type, data, callback) {
-    if (userId && type) {
-      const log = {
-        user_id: userId,
-        type: type
-      }
-
-      if (data && data.follow_user_id) {
-        log.follow_user_id = data.follow_user_id
-      }
-
-      models.user_activity.create(log)
-    }
-
-    if (typeof callback === 'function') {
-      return callback()
-    }
-  },
-
-  /**
-   * Check if User is Valid
-   * @param {object} request - HTTP Request
-   * @param {callback} callback - Requested Callback Handler
-   * @returns {*}
-   */
-  isValidUser (request, callback) {
-    const headerToken = (request.headers.authorization) ? request.headers.authorization.replace('Bearer ', '') : null
-
-    if (headerToken && headerToken !== null) {
-      jwt.verify(headerToken, config.get('secret'), (err, decoded) => {
-        if (err) {
-          return callback()
-        }
-
-        if (decoded.userId) {
-          return callback(parseInt(decoded.userId, 10))
-        } else {
-          return callback()
-        }
-      })
-    } else {
-      return callback(new Error('Missing Header Token'))
-    }
-  },
-
-  /**
-   * Convert String to Title Case
-   * @param stripDashes
-   * @param str
-   * @returns {string}
-   */
-  titleCase (str, stripDashes) {
-    if (stripDashes) {
-      str = str.replace(/-/g, ' ')
-    }
-
-    return str.trim().replace(/\w\S*/g, (txt) => {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-    })
   }
 }

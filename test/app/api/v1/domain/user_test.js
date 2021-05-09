@@ -232,7 +232,7 @@ describe('Domain User', () => {
 
   describe('deleteAccount', (done) => {
     beforeEach(() => {
-      this.userFindStub = this.sandbox.stub(models.users, 'findOne')
+      this.userFindStub = this.sandbox.stub(models.Users, 'findOne')
     })
 
     it('should delete user', (done) => {
@@ -296,7 +296,7 @@ describe('Domain User', () => {
 
   describe('emailAddressInUse', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
     })
 
     it('should return a result', (done) => {
@@ -390,7 +390,7 @@ describe('Domain User', () => {
 
   describe('followUser', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
       this.userFollowStub = this.sandbox.stub(models.user_follows, 'findOne')
       this.userFollowCreateStub = this.sandbox.stub(models.user_follows, 'create')
     })
@@ -482,7 +482,7 @@ describe('Domain User', () => {
 
   describe('getFollowers', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
       this.userFollowStub = this.sandbox.stub(models.user_follows, 'findAll')
     })
 
@@ -529,7 +529,7 @@ describe('Domain User', () => {
 
   describe('getFollowing', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
       this.userFollowStub = this.sandbox.stub(models.user_follows, 'findAll')
     })
 
@@ -576,7 +576,7 @@ describe('Domain User', () => {
 
   describe('unfollowUser', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
       this.userFollowStub = this.sandbox.stub(models.user_follows, 'findOne')
     })
 
@@ -657,7 +657,7 @@ describe('Domain User', () => {
 
   describe('updateAccount', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
       this.userFollowStub = this.sandbox.stub(models.user_follows, 'findOne')
     })
 
@@ -801,7 +801,7 @@ describe('Domain User', () => {
 
   describe('usernameInUse', () => {
     beforeEach(() => {
-      this.userStub = this.sandbox.stub(models.users, 'findOne')
+      this.userStub = this.sandbox.stub(models.Users, 'findOne')
     })
 
     it('should return username is in use', (done) => {

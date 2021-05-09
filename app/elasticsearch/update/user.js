@@ -38,7 +38,7 @@ module.exports = {
         params.where.id = userId
       }
 
-      return models.users.findAll(params)
+      return models.Users.findAll(params)
     }).then((user) => {
       if (user.length) {
         const bulkActions = []

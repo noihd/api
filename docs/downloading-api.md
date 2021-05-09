@@ -32,7 +32,7 @@ Create a file located at `./app/seeders/00000000000000-api-authentication-seeder
  */
 module.exports = {
   up: (queryInterface) => {
-    return queryInterface.bulkInsert('api_authentication', [
+    return queryInterface.bulkInsert('ApiAuthentication', [
       {
         approved_whitelist: '*',
         api_key: 'CHANGE_ME',
@@ -65,7 +65,7 @@ module.exports = {
     })
   },
   down: (queryInterface) => {
-    return queryInterface.bulkDelete('api_authentication', null, {})
+    return queryInterface.bulkDelete('ApiAuthentication', null, {})
   }
 }
 ```

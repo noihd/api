@@ -144,7 +144,7 @@ const SetupAPI = (request, response, next) => {
   if (request.query.apikey) {
     analytics.trackEvent(request.query.apikey, 'API Key', request.query.apikey, request.url)
 
-    return models.api_authentication.findOne({
+    return models.ApiAuthentication.findOne({
       where: {
         api_key: request.query.apikey
       }
