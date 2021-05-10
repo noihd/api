@@ -1,0 +1,55 @@
+{
+  "folders": [
+	{
+		"path": "."
+	}
+],
+  "settings": {
+    "window.title": "PDP API${separator}${activeEditorShort}",
+    "files.exclude": {
+      "**/.git": false,
+      "**/.svn": false,
+      "**/.hg": false,
+      "**/CVS": false,
+      "**/.DS_Store": false,
+      "**/*.git": false
+    },
+    "cSpell.words": [
+      "apikey",
+      "btree",
+      "bugsnag",
+      "csllea",
+      "db",
+      "docstrap",
+      "ducet",
+      "flatdb",
+      "geoip",
+      "gitattributes",
+      "hashids",
+      "inno",
+      "ipaddr",
+      "ipaddress",
+      "leaic",
+      "lemas",
+      "leoka",
+      "mailchimp",
+      "maxmind",
+      "mmdb",
+      "multijurisdictional",
+      "ncic",
+      "ngram",
+      "randomstring",
+      "scriptshelp",
+      "siegel",
+      "socio"
+    ],
+    "explorerExclude.backup": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/*.git": true
+    }
+  }
+}

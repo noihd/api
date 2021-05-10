@@ -86,12 +86,13 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Officers Assaulted and Killed Annual Death Counts',
       indexes: [
         {
-          unique: true,
-          name: 'annual_officer_deaths_unique_ix',
+          name: 'annual_officer_deaths_agency_year_ix',
+          using: 'BTREE',
           fields: ['agency_id', 'source_year']
         },
         {
           name: 'annual_officer_deaths_year_ix',
+          using: 'BTREE',
           fields: ['source_year']
         }
       ]

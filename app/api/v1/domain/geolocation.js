@@ -4,7 +4,7 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const maxmind = require('maxmind-db-reader')
+const maxmind = require('@maxmind/geoip2-node').Reader
 const Promise = require('bluebird')
 
 /**
@@ -18,24 +18,24 @@ module.exports = {
     * @param {string} source - Data Source [ 'cities', 'countries' ]
     * @returns {*}
     */
-  getIpAddress: function (ip, source) {
+  getIpAddress: (ip, source) => {
     const possibleSources = ['cities', 'countries']
 
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       if (possibleSources.indexOf(source) !== -1) {
-        maxmind.open('./app/flat-db/' + source + '.mmdb', (err, cities) => {
-          if (err) {
+        if (source === 'cities') {
+          maxmind.open('./app/flat-db/GeoLite2-City.mmdb').then(reader => {
+            resolve(reader.city(ip))
+          }).catch(err => {
             reject(err)
-          } else {
-            cities.getGeoData(ip, (ipErr, data) => {
-              if (ipErr) {
-                reject(ipErr)
-              } else {
-                resolve(data)
-              }
-            })
-          }
-        })
+          })
+        } else if (source === 'countries') {
+          maxmind.open('./app/flat-db/GeoLite2-Country.mmdb').then(reader => {
+            resolve(reader.country(ip))
+          }).catch(err => {
+            reject(err)
+          })
+        }
       } else {
         reject('Invalid Source')
       }

@@ -154,28 +154,33 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Socio-Demographic Measures',
       indexes: [
         {
-          unique: true,
-          name: 'demographics_unique_ix',
+          name: 'demographics_agency_year_ix',
+          using: 'BTREE',
           fields: ['agency_id', 'source_year']
         },
         {
           name: 'demographics_year_ix',
+          using: 'BTREE',
           fields: ['source_year']
         },
         {
           name: 'demographics_normalized_ix',
+          using: 'BTREE',
           fields: ['is_normalized_place']
         },
         {
           name: 'demographics_place_ix',
+          using: 'BTREE',
           fields: ['is_place']
         },
         {
           name: 'demographics_county_ix',
+          using: 'BTREE',
           fields: ['is_county']
         },
         {
           name: 'demographics_geo_ix',
+          using: 'BTREE',
           fields: ['is_geo']
         }
       ]

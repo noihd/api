@@ -62,12 +62,13 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Gunshot Measures',
       indexes: [
         {
-          unique: true,
-          name: 'gunshots_unique_ix',
+          name: 'gunshots_agency_year_ix',
+          using: 'BTREE',
           fields: ['agency_id', 'source_year']
         },
         {
           name: 'gunshots_year_ix',
+          using: 'BTREE',
           fields: ['source_year']
         }
       ]

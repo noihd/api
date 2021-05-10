@@ -52,7 +52,8 @@ module.exports = (sequelize, DataTypes) => {
         comment: 'LEM_8 Count of New Recruit Required Training Hours, LEMAS'
       },
       minimum_education_requirement: {
-        type: DataTypes.INTEGER(1),
+        type: DataTypes.ENUM,
+        values: ['four-year-college-degree', 'two-year-college-degree', 'some-college-but-no-degree', 'high-school-diploma-or-equivalent', 'no-formal-education'],
         comment: 'LEM_9 Minimum Education Requirement, LEMAS'
       },
       sworn_full_time_men: {
@@ -196,61 +197,79 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Police Department Characteristics',
       indexes: [
         {
-          unique: true,
-          name: 'characteristics_unique_ix',
+          name: 'characteristics_agency_year_ix',
+          using: 'BTREE',
           fields: ['agency_id', 'source_year']
         },
         {
           name: 'characteristics_year_ix',
+          using: 'BTREE',
           fields: ['source_year']
         },
         {
           name: 'characteristics_imputed_ix',
+          using: 'BTREE',
           fields: ['is_imputed']
         },
         {
           name: 'characteristics_education_ix',
+          using: 'BTREE',
           fields: ['incentives_education']
         },
         {
           name: 'characteristics_tuition_ix',
+          using: 'BTREE',
           fields: ['incentives_tuition']
         },
         {
           name: 'characteristics_lethal_ix',
+          using: 'BTREE',
           fields: ['has_lethal_force_policy']
         },
         {
           name: 'characteristics_less_lethal_ix',
+          using: 'BTREE',
           fields: ['has_less_than_lethal_force_policy']
         },
         {
           name: 'characteristics_conduct_ix',
+          using: 'BTREE',
           fields: ['has_conduct_appearance_policy']
         },
         {
           name: 'characteristics_off_duty_ix',
+          using: 'BTREE',
           fields: ['has_off_duty_employee_policy']
         },
         {
           name: 'characteristics_off_max_ix',
+          using: 'BTREE',
           fields: ['has_off_max_hours_policy']
         },
         {
           name: 'characteristics_domestic_ix',
+          using: 'BTREE',
           fields: ['has_domestic_dispute_policy']
         },
         {
           name: 'characteristics_civilian_ix',
+          using: 'BTREE',
           fields: ['has_civilian_board_for_excessive_force_complaints']
         },
         {
           name: 'characteristics_independent_ix',
+          using: 'BTREE',
           fields: ['has_independent_investigative_authority_board']
         },
         {
           name: 'characteristics_pursuits_ix',
+          using: 'BTREE',
           fields: ['pursuits_must_be_reviewed']
+        },
+        {
+          name: 'characteristics_minimum_edu_ix',
+          using: 'BTREE',
+          fields: ['minimum_education_requirement']
         }
       ]
     }

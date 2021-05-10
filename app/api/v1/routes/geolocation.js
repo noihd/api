@@ -18,10 +18,10 @@ const GeolocationDomain = require('../domain/geolocation')
   * Lookup Location Data from IP Address
   * @memberof module:routes/geolocation
   * @name [GET] /geolocation/ip/:ipaddress
-  * @property {string} [ipaddress=Requester's IP Address] - IP Address to Search For
+  * @property {string} [ipaddress=Requests IP Address] - IP Address to Search For
   */
 /* istanbul ignore next */
-router.route('/geolocation/ip/:ipaddress?').get(function (request, response) {
+router.route('/geolocation/ip/:ipaddress?').get((request, response) => {
   let valid = true
   let ip = request.params.ipaddress
 
@@ -38,7 +38,7 @@ router.route('/geolocation/ip/:ipaddress?').get(function (request, response) {
 
   if (addr && valid) {
     GeolocationDomain.getIpAddress(addr, 'cities')
-      .then(function (results) {
+      .then(results => {
         const apikey = (request.header('API-Key')) || request.query.apikey || null
         analytics.trackEvent(apikey, 'Geolocation', 'IP Address', request.query.apikey, results.length)
 
@@ -46,12 +46,12 @@ router.route('/geolocation/ip/:ipaddress?').get(function (request, response) {
           data: results
         }, request.query.fields))
       })
-      .catch(function (error) {
+      .catch(error => {
         const apikey = (request.header('API-Key')) || request.query.apikey || null
         analytics.trackEvent(apikey, 'Geolocation', 'Error - IP Address', error.toString())
 
         response.json(util.createAPIResponse({
-          errors: [error]
+          errors: [error.message]
         }, request.query.fields))
       })
   } else {

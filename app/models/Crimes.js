@@ -138,12 +138,13 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Crime Measures',
       indexes: [
         {
-          unique: true,
-          name: 'crimes_unique_ix',
+          name: 'crimes_agency_year_ix',
+          using: 'BTREE',
           fields: ['agency_id', 'source_year']
         },
         {
           name: 'crimes_year_ix',
+          using: 'BTREE',
           fields: ['source_year']
         }
       ]

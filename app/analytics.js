@@ -4,9 +4,7 @@
  * @author Peter Schmalfeldt <me@peterschmalfeldt.com>
  */
 
-const async = require('async')
-const request = require('request')
-
+const fetch = require('node-fetch')
 const config = require('./config')
 
 const Analytics = {
@@ -40,20 +38,14 @@ const Analytics = {
         ev: value
       }
 
-      const requests = [{
-        url: 'http://www.google-analytics.com/collect',
-        method: 'POST',
-        form: data
-      }]
-
       /* istanbul ignore next: Skipping since it will only fire if not test */
       if (config.get('env') !== 'test') {
-        async.map(requests, (fetch) => {
-          request(fetch)
+        return fetch('http://www.google-analytics.com/collect', {
+          params: data
         })
       }
 
-      return requests
+      return true
     }
 
     return true

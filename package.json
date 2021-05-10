@@ -39,8 +39,8 @@
     "elasticsearch:update": "cd ./app && node ./elasticsearch/update && cd ../",
     "elasticsearch:delete": "cd ./app && node ./elasticsearch/delete && cd ../",
     "flatdb:download-all": "npm run -s flatdb:geo-city && npm run -s flatdb:geo-country",
-    "flatdb:geo-city": "rm -f ./app/flat-db/cities.mmdb && curl -o ./app/flat-db/cities.mmdb.gz 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=OnetpenM09tdqAhJ&suffix=tar.gz' && gunzip ./app/flat-db/cities.mmdb.gz",
-    "flatdb:geo-country": "rm -f ./app/flat-db/countries.mmdb && curl -o ./app/flat-db/countries.mmdb.gz 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=OnetpenM09tdqAhJ&suffix=tar.gz' && gunzip ./app/flat-db/countries.mmdb.gz",
+    "flatdb:geo-city": "rm -f ./app/flat-db/cities.mmdb && curl -o ./app/flat-db/cities.mmdb.gz 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=OnetpenM09tdqAhJ&suffix=tar.gz' && gunzip ./app/flat-db/cities.mmdb.gz && tar -s'|.*/||' -xf ./app/flat-db/cities.mmdb '*/GeoLite2-City.mmdb' && mv GeoLite2-City.mmdb ./app/flat-db",
+    "flatdb:geo-country": "rm -f ./app/flat-db/countries.mmdb && curl -o ./app/flat-db/countries.mmdb.gz 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=OnetpenM09tdqAhJ&suffix=tar.gz' && gunzip ./app/flat-db/countries.mmdb.gz && tar -s'|.*/||' -xf ./app/flat-db/countries.mmdb '*/GeoLite2-Country.mmdb' && mv GeoLite2-Country.mmdb ./app/flat-db",
     "help": "node node_modules/npm-scripts-help"
   },
   "repository": {
@@ -54,6 +54,7 @@
   "dependencies": {
     "@bugsnag/js": "^7.9.2",
     "@bugsnag/plugin-express": "^7.9.2",
+    "@maxmind/geoip2-node": "^2.3.2",
     "async": "^3.2.0",
     "babel-core": "^6.26.3",
     "bluebird": "^3.7.2",
@@ -73,11 +74,11 @@
     "hashids": "^2.2.8",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "maxmind-db-reader": "^0.2.1",
     "md5": "^2.3.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "mysql2": "^2.2.5",
+    "node-fetch": "^2.6.1",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0",
     "sequelize-slugify": "^1.5.0",

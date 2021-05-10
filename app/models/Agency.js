@@ -248,42 +248,52 @@ module.exports = (sequelize, DataTypes) => {
       indexes: [
         {
           name: 'address_city_ix',
+          using: 'BTREE',
           fields: ['address_city']
         },
         {
           name: 'address_state_ix',
+          using: 'BTREE',
           fields: ['address_state']
         },
         {
           name: 'fips_county_code_ix',
+          using: 'BTREE',
           fields: ['fips_county_code']
         },
         {
           name: 'fips_place_code_ix',
+          using: 'BTREE',
           fields: ['fips_place_code']
         },
         {
           name: 'fips_state_code_ix',
+          using: 'BTREE',
           fields: ['fips_state_code']
         },
         {
           name: 'geo_county_name_ix',
+          using: 'BTREE',
           fields: ['geo_county_name']
         },
         {
           name: 'geo_state_name_ix',
+          using: 'BTREE',
           fields: ['geo_state_name']
         },
         {
           name: 'agency_type_ix',
+          using: 'BTREE',
           fields: ['agency_type']
         },
         {
           name: 'agency_sub_type_1_ix',
+          using: 'BTREE',
           fields: ['agency_sub_type_1']
         },
         {
           name: 'agency_sub_type_2_ix',
+          using: 'BTREE',
           fields: ['agency_sub_type_2']
         }
       ]

@@ -70,24 +70,27 @@ module.exports = (sequelize, DataTypes) => {
       comment: 'Constructed Contextual Firearm Measures',
       indexes: [
         {
-          unique: true,
-          name: 'firearm_laws_unique_ix',
+          name: 'firearm_laws_agency_year_ix',
           fields: ['agency_id', 'source_year']
         },
         {
           name: 'firearm_laws_year_ix',
+          using: 'BTREE',
           fields: ['source_year']
         },
         {
           name: 'firearm_laws_violent_ix',
+          using: 'BTREE',
           fields: ['violent_misdemeanor']
         },
         {
           name: 'firearm_laws_universal_ix',
+          using: 'BTREE',
           fields: ['universal_background_check']
         },
         {
           name: 'firearm_laws_issue_ix',
+          using: 'BTREE',
           fields: ['may_issue']
         }
       ]
